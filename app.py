@@ -1,9 +1,3 @@
-# C:\Users\kevin.bryan\Dropbox\economics\Other\LanguageTrainer\test2
-# py -m venv env
-# env\Scripts\activate.bat
-# set FLASK_APP=app
-# flask run
-
 from flask import Flask, render_template, request, url_for, flash, session, redirect, jsonify
 import requests
 from bs4 import BeautifulSoup
