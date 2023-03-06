@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Language Learner</title>
+<style>
+	.left-class {
+  	background-color: #f5eae1; /* salmon-pink background color */
+	position: absolute;
+	left: 5%;
+	width: 500px;
+	padding: 20px;
+	}
+
+    .right-class {
+	background-color: #BFDAFF;
+	position: absolute;
+	right:5%;
+	width: 500px;
+	padding: 20px;
+    }
+
+	.reply {
+	font-family: "Libre Baskerville", serif;
+	}
+
+	h2 {
+	font-family: "Libre Baskerville", serif;
+	}
+</style>
+<body>
+
+    <div class="left-class">
+    <center>FrancAIs by Kevin Bryan.  Source: Le Monde.</center>
+    <p>
+    <h2>{{ title }}</h2>
+    {{ text|safe }}
+    </div>
+    <div class="right-class">
+
+<p class="reply" name="reply1" font-style:"bold">{{ reply1|safe }}</p>    
+<form id="my-form-1" method="post" data-target="response1">
+    <div style="display: flex; flex-direction: row;">
+        <textarea name="content1" placeholder="Response" rows="2" cols="60"  style="flex: 1;"></textarea>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<div id="response1"></div>
+
+<p class="reply" name="reply2" font-style:"bold">{{ reply2|safe }}</p>    
+<form id="my-form-2" method="post" data-target="response2">
+    <div style="display: flex; flex-direction: row;">
+        <textarea name="content2" placeholder="Response" rows="2" cols="60"  style="flex: 1;"></textarea>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<div id="response2"></div>
+
+<p class="reply" name="reply3" font-style:"bold">{{ reply3|safe }}</p>
+<form id="my-form-3" method="post" data-target="response3">
+    <div style="display: flex; flex-direction: row;">
+        <textarea name="content3" placeholder="Response" rows="2" cols="60"  style="flex: 1;"></textarea>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<div id="response3"></div>
+
+<p class="reply" name="reply4" font-style:"bold">{{ reply4|safe }}</p>
+<form id="my-form-4" method="post" data-target="response4">
+    <div style="display: flex; flex-direction: row;">
+        <textarea name="content4" placeholder="Response" rows="2" cols="60"  style="flex: 1;"></textarea>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<div id="response4"></div>
+
+<p class="reply" name="reply5" font-style:"bold">{{ reply5|safe }}</p>
+<form id="my-form-5" method="post" data-target="response5">
+    <div style="display: flex; flex-direction: row;">
+        <textarea name="content5" placeholder="Response" rows="2" cols="60"  style="flex: 1;"></textarea>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<div id="response5"></div>
+
+<p class="reply" name="reply6" font-style:"bold">If there is a sentence or phrase you still don't understand, ask me to help with the interpretation.</p>
+<form id="my-form-6" method="post" data-target="response6">
+    <div style="display: flex; flex-direction: row;">
+        <textarea name="content6" placeholder="Response" rows="2" cols="60"  style="flex: 1;"></textarea>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<br>
+<div id="response6"></div>
+
+
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      var target = $(this).data('target');  // Get the data-target attribute value
+      console.log(target);
+      $.ajax({
+        type: 'POST',
+        url: '/',
+        data: formData,
+        success: function(response) {
+          $('#' + target).text(response.reply);  
+        }
+      });
+    });
+  });
+</script>
+
+
+</body>
+</html>
