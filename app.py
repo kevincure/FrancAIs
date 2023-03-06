@@ -2,9 +2,12 @@ from flask import Flask, render_template, request, url_for, flash, session, redi
 import requests
 from bs4 import BeautifulSoup
 import openai
+import os
 
 app = Flask(__name__)
+# this is just here because it is needed to maintain session variables, it doesn't matter
 app.secret_key = 'BAD_SECRET_KEY'
+
 
 with open("APIkey.txt") as f:
     openai.api_key = f.read().strip()
